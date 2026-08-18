@@ -5,6 +5,7 @@ import { Image } from "react-native";
 interface WeatherIconProps {
   weatherCode: number;
   isDay: number;
+  size?: { width: number; height: number };
 }
 
 export const WeatherIcon = ({ weatherCode, isDay }: WeatherIconProps) => {

@@ -35,14 +35,14 @@ export const styles = StyleSheet.create({
     fontSize: 42,
     lineHeight: 44,
     letterSpacing: 0,
-    fontWeight: "400",
+    fontWeight: 400,
   },
 
   locationText: {
     fontSize: 12,
     lineHeight: 20,
     letterSpacing: 0,
-    fontWeight: "400",
+    fontWeight: 400,
   },
 
   weatherInfo: {},

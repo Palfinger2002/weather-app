@@ -5,6 +5,7 @@ import { CurrentWeather } from "./components/CurrentWeather/CurrentWeather";
 import { WeatherMetrics } from "./components/WeatherMetrics/WeatherMetrics";
 import { LocationDisplay } from "./components/LocationDisplay/LocationDisplay";
 import { WeatherIcon } from "./components/WeatherIcon/WeatherIcon";
+import { Forecast } from "./components/Forecast/Forecast";
 
 export default function App() {
   const { weather, error, isLoading } = useWeather();
@@ -27,6 +28,7 @@ export default function App() {
       <CurrentWeather weather={weather} />
       <LocationDisplay weather={weather} />
       <WeatherMetrics weather={weather} />
+      <Forecast weather={weather} />
     </View>
   );
 }
