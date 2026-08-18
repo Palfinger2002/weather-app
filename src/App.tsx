@@ -1,75 +1,41 @@
 import { StyleSheet, Text, View } from "react-native";
 import { useWeather } from "./hooks/useWeather";
+import { Header } from "./components/Header/Header";
+import { CurrentWeather } from "./components/CurrentWeather/CurrentWeather";
+import { Forecast } from "./components/Forecast/Forecast";
+import { WeatherMetrics } from "./components/WeatherMetrics/WeatherMetrics";
 
 export default function App() {
-  const { weather, error } = useWeather();
+  const { weather, error, isLoading } = useWeather();
+
+  if (isLoading) {
+    return <Text>Loading...</Text>;
+  }
+
+  if (error) {
+    return <Text>{error}</Text>;
+  }
+
+  if (!weather) {
+    return <Text>No weather data</Text>;
+  }
 
   return (
     <View style={styles.container}>
-      {/* <Text>
-        {weather === null ? (
-          <Text>{error !== null ? error : "Loading..."}</Text>
-        ) : (
-          <>
-            <Text>Температура: {weather?.current?.temperature_2m}°C</Text>
-            <Text>
-              Відносна вологість: {weather?.current?.relative_humidity_2m}
-            </Text>
-            <Text>Швидкість вітру: {weather?.current?.wind_speed_10m}</Text>
-          </>
-        )}
-      </Text> */}
-
-      <View style={{ flexDirection: "row" }}>
-        <Text style={styles.bigTemp}>{weather?.current?.temperature_2m}°</Text>
-        <Text style={styles.locationText}> Party Cloudy</Text>
-      </View>
-      <View>
-        <Text style={styles.locationText}>South Jakarta, Indonesia ▾</Text>
-      </View>
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-around",
-          width: "100%",
-        }}
-      >
-        <View>
-          <Text>{weather?.current?.relative_humidity_2m}%</Text>
-          <Text>Humidity</Text>
-        </View>
-        <View>
-          <Text>11</Text>
-          <Text>UV Index</Text>
-        </View>
-        <View>
-          <Text>E {weather?.current?.wind_speed_10m} kmh</Text>
-          <Text>Wind</Text>
-        </View>
-      </View>
+      <Header />
+      <CurrentWeather weather={weather} />
+      <WeatherMetrics weather={weather} />
+      <Forecast weather={weather} />
     </View>
   );
 }
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingTop: 10,
-  },
-
-  bigTemp: {
-    fontSize: 42,
-    lineHeight: 44,
-    letterSpacing: 0,
-    fontWeight: 400,
-  },
-
-  locationText: {
-    fontSize: 12,
-    lineHeight: 20,
-    letterSpacing: 0,
-    fontWeight: 400,
+    justifyContent: "flex-start",
+    paddingTop: 45,
+    gap: 24,
+    paddingRight: 12,
   },
 });
