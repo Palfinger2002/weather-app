@@ -2,8 +2,9 @@ import { StyleSheet, Text, View } from "react-native";
 import { useWeather } from "./hooks/useWeather";
 import { Header } from "./components/Header/Header";
 import { CurrentWeather } from "./components/CurrentWeather/CurrentWeather";
-import { Forecast } from "./components/Forecast/Forecast";
 import { WeatherMetrics } from "./components/WeatherMetrics/WeatherMetrics";
+import { LocationDisplay } from "./components/LocationDisplay/LocationDisplay";
+import { WeatherIcon } from "./components/WeatherIcon/WeatherIcon";
 
 export default function App() {
   const { weather, error, isLoading } = useWeather();
@@ -24,8 +25,8 @@ export default function App() {
     <View style={styles.container}>
       <Header />
       <CurrentWeather weather={weather} />
+      <LocationDisplay weather={weather} />
       <WeatherMetrics weather={weather} />
-      <Forecast weather={weather} />
     </View>
   );
 }
