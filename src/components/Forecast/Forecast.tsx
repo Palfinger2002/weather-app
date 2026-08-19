@@ -1,14 +1,39 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import type { WeatherResponse } from "../../types/weather";
 import { WeatherIcon } from "../WeatherIcon/WeatherIcon";
+import { useState } from "react";
 
 interface ForecastProps {
   weather: WeatherResponse;
 }
 
 export const Forecast = ({ weather }: ForecastProps) => {
-  function getForecastForHour(hour: string, isDay: number) {
-    const index = weather.hourly.time.findIndex((time) => time.includes(hour));
+  const [activeTab, setActiveTab] = useState<
+    "today" | "tomorrow" | "3-days" | "7-days"
+  >("today");
+  const date = new Date();
+
+  if (activeTab === "tomorrow") {
+    date.setDate(date.getDate() + 1);
+  }
+
+  if (activeTab === "3-days") {
+    date.setDate(date.getDate() + 3);
+  }
+
+  if (activeTab === "7-days") {
+    date.setDate(date.getDate() + 7);
+  }
+
+  const dateString = date.toISOString().split("T")[0];
+  function getForecastForHour(
+    hour: string,
+    isDay: number,
+    day: "today" | "tomorrow" | "3-days" | "7-days",
+  ) {
+    const index = weather.hourly.time.findIndex(
+      (time) => time.includes(dateString) && time.includes(hour),
+    );
 
     return {
       temp: weather.hourly.temperature_2m[index],
@@ -17,25 +42,86 @@ export const Forecast = ({ weather }: ForecastProps) => {
     };
   }
 
-  const morning = getForecastForHour("09:00", 1);
-  const afternoon = getForecastForHour("15:00", 1);
-  const evening = getForecastForHour("18:00", 0);
-  const night = getForecastForHour("21:00", 0);
+  const morning = getForecastForHour("09:00", 1, activeTab);
+  const afternoon = getForecastForHour("15:00", 1, activeTab);
+  const evening = getForecastForHour("18:00", 0, activeTab);
+  const night = getForecastForHour("21:00", 0, activeTab);
 
   return (
-    <View>
+    <View style={styles.container}>
+      <View style={styles.tabsRow}>
+        <View style={{ flexDirection: "row", gap: 12 }}>
+          <TouchableOpacity onPress={() => setActiveTab("today")}>
+            <Text
+              style={
+                activeTab === "today" ? styles.tabActive : styles.tabInactive
+              }
+            >
+              Today
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => setActiveTab("tomorrow")}>
+            <Text
+              style={
+                activeTab === "tomorrow" ? styles.tabActive : styles.tabInactive
+              }
+            >
+              Tomorrow
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => setActiveTab("3-days")}>
+            <Text
+              style={
+                activeTab === "3-days" ? styles.tabActive : styles.tabInactive
+              }
+            >
+              3-days
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => setActiveTab("7-days")}>
+            <Text
+              style={
+                activeTab === "7-days" ? styles.tabActive : styles.tabInactive
+              }
+            >
+              7-days
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <Text style={styles.seeAll}>See All</Text>
+      </View>
+
       <View style={styles.containerImages}>
-        <WeatherIcon weatherCode={morning.code} isDay={morning.isDay} />
-        <WeatherIcon weatherCode={afternoon.code} isDay={afternoon.isDay} />
-        <WeatherIcon weatherCode={evening.code} isDay={evening.isDay} />
-        <WeatherIcon weatherCode={night.code} isDay={night.isDay} />
+        <WeatherIcon
+          weatherCode={morning.code}
+          isDay={morning.isDay}
+          size={{ width: 39, height: 38 }}
+        />
+        <WeatherIcon
+          weatherCode={afternoon.code}
+          isDay={afternoon.isDay}
+          size={{ width: 39, height: 38 }}
+        />
+        <WeatherIcon
+          weatherCode={evening.code}
+          isDay={evening.isDay}
+          size={{ width: 39, height: 38 }}
+        />
+        <WeatherIcon
+          weatherCode={night.code}
+          isDay={night.isDay}
+          size={{ width: 39, height: 38 }}
+        />
       </View>
 
       <View style={styles.containerTemp}>
-        <Text style={styles.temp}>{morning.temp}°</Text>
-        <Text style={styles.temp}>{afternoon.temp}°</Text>
-        <Text style={styles.temp}>{evening.temp}°</Text>
-        <Text style={styles.temp}>{night.temp}°</Text>
+        <Text style={styles.temp}>{Math.round(morning.temp)}°</Text>
+        <Text style={styles.temp}>{Math.round(afternoon.temp)}°</Text>
+        <Text style={styles.temp}>{Math.round(evening.temp)}°</Text>
+        <Text style={styles.temp}>{Math.round(night.temp)}°</Text>
       </View>
 
       <View style={styles.containerTimeDay}>
@@ -49,6 +135,24 @@ export const Forecast = ({ weather }: ForecastProps) => {
 };
 
 export const styles = StyleSheet.create({
+  container: {
+    margin: 25,
+  },
+
+  tabsRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+
+  seeAll: {
+    fontSize: 14,
+    fontWeight: 600,
+    lineHeight: 26,
+    letterSpacing: 0,
+    color: "#617BE3",
+  },
+
   containerImages: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -77,5 +181,20 @@ export const styles = StyleSheet.create({
     lineHeight: 14,
     letterSpacing: 0,
     fontSize: 12,
+  },
+
+  tabActive: {
+    fontSize: 16,
+    fontWeight: 600,
+    lineHeight: 26,
+    letterSpacing: 0,
+  },
+
+  tabInactive: {
+    color: "#898989",
+    fontWeight: 400,
+    fontSize: 14,
+    lineHeight: 26,
+    letterSpacing: 0,
   },
 });

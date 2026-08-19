@@ -11,7 +11,9 @@ export const CurrentWeather = ({ weather }: CurrentWeatherProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.weatherInfo}>
-        <Text style={styles.bigTemp}>{weather.current.temperature_2m}°</Text>
+        <Text style={styles.bigTemp}>
+          {Math.round(weather.current.temperature_2m)}°
+        </Text>
         <Text style={styles.locationText}>
           {getWeatherDescription(weather.current.weather_code)}
         </Text>
