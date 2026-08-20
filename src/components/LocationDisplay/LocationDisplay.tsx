@@ -14,5 +14,6 @@ export const styles = StyleSheet.create({
     lineHeight: 20,
     letterSpacing: 0,
     fontWeight: 400,
+    marginLeft: 24,
   },
 });

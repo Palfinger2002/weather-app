@@ -98,22 +98,22 @@ export const Forecast = ({ weather }: ForecastProps) => {
         <WeatherIcon
           weatherCode={morning.code}
           isDay={morning.isDay}
-          size={{ width: 39, height: 38 }}
+          size={{ width: 50, height: 50 }}
         />
         <WeatherIcon
           weatherCode={afternoon.code}
           isDay={afternoon.isDay}
-          size={{ width: 39, height: 38 }}
+          size={{ width: 50, height: 50 }}
         />
         <WeatherIcon
           weatherCode={evening.code}
           isDay={evening.isDay}
-          size={{ width: 39, height: 38 }}
+          size={{ width: 50, height: 50 }}
         />
         <WeatherIcon
           weatherCode={night.code}
           isDay={night.isDay}
-          size={{ width: 39, height: 38 }}
+          size={{ width: 50, height: 50 }}
         />
       </View>
 
@@ -155,20 +155,23 @@ export const styles = StyleSheet.create({
 
   containerImages: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
+    marginTop: 24,
   },
 
   containerTemp: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
+    marginTop: 5,
   },
 
   containerTimeDay: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     textAlign: "center",
+    marginTop: 5,
   },
 
   image: {

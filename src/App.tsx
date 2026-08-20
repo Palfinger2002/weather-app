@@ -4,11 +4,17 @@ import { Header } from "./components/Header/Header";
 import { CurrentWeather } from "./components/CurrentWeather/CurrentWeather";
 import { WeatherMetrics } from "./components/WeatherMetrics/WeatherMetrics";
 import { LocationDisplay } from "./components/LocationDisplay/LocationDisplay";
-import { WeatherIcon } from "./components/WeatherIcon/WeatherIcon";
 import { Forecast } from "./components/Forecast/Forecast";
+import { AirPollution } from "./components/AirPolution/AirPolution";
+import { useAirQuality } from "./hooks/useAirQuality";
 
 export default function App() {
   const { weather, error, isLoading } = useWeather();
+  const {
+    airQuality,
+    error: airQualityError,
+    isLoading: airQualityLoading,
+  } = useAirQuality();
 
   if (isLoading) {
     return <Text>Loading...</Text>;
@@ -22,6 +28,10 @@ export default function App() {
     return <Text>No weather data</Text>;
   }
 
+  if (!airQuality) {
+    return <Text>No air quality data</Text>;
+  }
+
   return (
     <View style={styles.container}>
       <Header />
@@ -29,6 +39,7 @@ export default function App() {
       <LocationDisplay weather={weather} />
       <WeatherMetrics weather={weather} />
       <Forecast weather={weather} />
+      <AirPollution airQuality={airQuality} />
     </View>
   );
 }

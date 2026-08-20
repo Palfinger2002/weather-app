@@ -10,7 +10,7 @@ interface CurrentWeatherProps {
 export const CurrentWeather = ({ weather }: CurrentWeatherProps) => {
   return (
     <View style={styles.container}>
-      <View style={styles.weatherInfo}>
+      <View>
         <Text style={styles.bigTemp}>
           {Math.round(weather.current.temperature_2m)}°
         </Text>
@@ -19,10 +19,12 @@ export const CurrentWeather = ({ weather }: CurrentWeatherProps) => {
         </Text>
       </View>
 
-      <WeatherIcon
-        weatherCode={weather.current.weather_code}
-        isDay={weather.current.is_day}
-      />
+      <View>
+        <WeatherIcon
+          weatherCode={weather.current.weather_code}
+          isDay={weather.current.is_day}
+        />
+      </View>
     </View>
   );
 };
@@ -31,6 +33,7 @@ export const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     justifyContent: "space-between",
+    margin: 24,
   },
 
   bigTemp: {
@@ -46,6 +49,4 @@ export const styles = StyleSheet.create({
     letterSpacing: 0,
     fontWeight: 400,
   },
-
-  weatherInfo: {},
 });

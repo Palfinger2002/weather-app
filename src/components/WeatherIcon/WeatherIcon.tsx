@@ -1,6 +1,5 @@
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, Image } from "react-native";
 import { weatherImages } from "../../utils/weatherImages";
-import { Image } from "react-native";
 
 interface WeatherIconProps {
   weatherCode: number;

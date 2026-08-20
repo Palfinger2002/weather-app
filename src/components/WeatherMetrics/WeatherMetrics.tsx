@@ -21,7 +21,7 @@ export const WeatherMetrics = ({ weather }: { weather: any }) => {
       </View>
       <View>
         <Text style={styles.metricValue}>
-          E {weather?.current?.wind_speed_10m} kmh
+          E {Math.round(weather?.current?.wind_speed_10m)} kmh
         </Text>
         <Text>Wind</Text>
       </View>
