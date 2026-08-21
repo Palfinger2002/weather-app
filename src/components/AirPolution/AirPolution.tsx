@@ -17,19 +17,16 @@ export const AirPollution = ({ airQuality }: AirPollutionProps) => {
         <Text style={styles.detailsLink}>Details</Text>
       </View>
       <View style={styles.content}>
-        <AirPollutionIcon
-          aqi={airQuality.current.us_aqi}
-          size={{ width: 1, height: 1 }}
-        />
+        <AirPollutionIcon aqi={airQuality.current.us_aqi} />
 
-        <View style={styles.aqiBlock}>
-          <Text style={styles.aqiValue}>{airQuality.current.us_aqi}</Text>
-
+        <View style={styles.textBlock}>
+          <View style={styles.valueRow}>
+            <Text style={styles.aqiValue}>{airQuality.current.us_aqi}</Text>
+            <Text style={styles.pm25Label}> | Micro Dust / PM2.5</Text>
+          </View>
           <Text style={styles.aqiCategory}>{category}</Text>
         </View>
         <View style={styles.pm25Block}>
-          <Text style={styles.pm25Label}>Micro Dust / PM2.5</Text>
-
           <Text style={styles.pm25Value}>{airQuality.current.pm2_5}</Text>
         </View>
       </View>
@@ -42,6 +39,7 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
     flexDirection: "row",
     marginHorizontal: 24,
+    gap: 16,
   },
 
   sectionTitle: {
@@ -65,8 +63,17 @@ export const styles = StyleSheet.create({
     margin: 24,
   },
 
+  textBlock: {
+    marginLeft: 16,
+  },
+
+  valueRow: {
+    flexDirection: "row",
+    alignItems: "baseline",
+  },
+
   aqiBlock: {
-    marginHorizontal: 24,
+    marginVertical: 24,
   },
 
   aqiValue: {
@@ -74,8 +81,8 @@ export const styles = StyleSheet.create({
     fontWeight: 400,
     fontSize: 32,
     lineHeight: 44,
-    letterSpacing: 0,
-    marginHorizontal: 14,
+    letterSpacing: 1,
+    marginRight: 30,
   },
 
   aqiCategory: {
@@ -86,7 +93,7 @@ export const styles = StyleSheet.create({
   },
 
   pm25Block: {
-    marginLeft: 20,
+    marginLeft: 0,
   },
 
   pm25Label: {

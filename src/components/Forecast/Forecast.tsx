@@ -47,6 +47,8 @@ export const Forecast = ({ weather }: ForecastProps) => {
   const evening = getForecastForHour("18:00", 0, activeTab);
   const night = getForecastForHour("21:00", 0, activeTab);
 
+  console.log("afternoon code:", afternoon.code);
+
   return (
     <View style={styles.container}>
       <View style={styles.tabsRow}>
