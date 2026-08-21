@@ -2,15 +2,21 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import type { WeatherResponse } from "../../types/weather";
 import { WeatherIcon } from "../WeatherIcon/WeatherIcon";
 import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import type { RootStackParamList } from "../../types/navigation";
 
 interface ForecastProps {
   weather: WeatherResponse;
 }
 
+type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
+
 export const Forecast = ({ weather }: ForecastProps) => {
   const [activeTab, setActiveTab] = useState<
     "today" | "tomorrow" | "3-days" | "7-days"
   >("today");
+  const navigation = useNavigation<NavigationProp>();
   const date = new Date();
 
   if (activeTab === "tomorrow") {
@@ -46,8 +52,6 @@ export const Forecast = ({ weather }: ForecastProps) => {
   const afternoon = getForecastForHour("15:00", 1, activeTab);
   const evening = getForecastForHour("18:00", 0, activeTab);
   const night = getForecastForHour("21:00", 0, activeTab);
-
-  console.log("afternoon code:", afternoon.code);
 
   return (
     <View style={styles.container}>
@@ -93,7 +97,15 @@ export const Forecast = ({ weather }: ForecastProps) => {
             </Text>
           </TouchableOpacity>
         </View>
-        <Text style={styles.seeAll}>See All</Text>
+        <View>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("TodayDetails", { day: activeTab });
+            }}
+          >
+            <Text style={styles.seeAll}>See All</Text>
+          </TouchableOpacity>
+        </View>
       </View>
 
       <View style={styles.containerImages}>

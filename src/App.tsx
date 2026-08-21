@@ -1,55 +1,21 @@
-import { StyleSheet, Text, View } from "react-native";
-import { useWeather } from "./hooks/useWeather";
-import { Header } from "./components/Header/Header";
-import { CurrentWeather } from "./components/CurrentWeather/CurrentWeather";
-import { WeatherMetrics } from "./components/WeatherMetrics/WeatherMetrics";
-import { LocationDisplay } from "./components/LocationDisplay/LocationDisplay";
-import { Forecast } from "./components/Forecast/Forecast";
-import { AirPollution } from "./components/AirPolution/AirPolution";
-import { useAirQuality } from "./hooks/useAirQuality";
+import { MainScreen } from "./screens/MainScreen/MainScreen";
+import { TodayDetailsScreen } from "./screens/TodayDetailsScreen/TodayDetailsScreen";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import type { RootStackParamList } from "./types/navigation";
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
-  const { weather, error, isLoading } = useWeather();
-  const {
-    airQuality,
-    error: airQualityError,
-    isLoading: airQualityLoading,
-  } = useAirQuality();
-
-  if (isLoading) {
-    return <Text>Loading...</Text>;
-  }
-
-  if (error) {
-    return <Text>{error}</Text>;
-  }
-
-  if (!weather) {
-    return <Text>No weather data</Text>;
-  }
-
-  if (!airQuality) {
-    return <Text>No air quality data</Text>;
-  }
-
   return (
-    <View style={styles.container}>
-      <Header />
-      <CurrentWeather weather={weather} />
-      <LocationDisplay weather={weather} />
-      <WeatherMetrics weather={weather} />
-      <Forecast weather={weather} />
-      <AirPollution airQuality={airQuality} />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Main" component={MainScreen}></Stack.Screen>
+        <Stack.Screen
+          name="TodayDetails"
+          component={TodayDetailsScreen}
+        ></Stack.Screen>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "flex-start",
-    paddingTop: 45,
-    gap: 24,
-    paddingRight: 12,
-  },
-});
