@@ -1,20 +1,28 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { AirQualityResponse } from "../../types/airQuality";
 import { getAqiCategory } from "../../utils/airQuality";
 import { AirPollutionIcon } from "../AirPollutionIcon/AirPollutionIcon";
-
+import { useNavigation } from "@react-navigation/native";
+import { NavigationProp } from "../Forecast/Forecast";
 interface AirPollutionProps {
   airQuality: AirQualityResponse;
 }
 
 export const AirPollution = ({ airQuality }: AirPollutionProps) => {
   const category = getAqiCategory(airQuality.current.us_aqi);
+  const navigation = useNavigation<NavigationProp>();
 
   return (
     <View>
       <View style={styles.header}>
         <Text style={styles.sectionTitle}>Air Pollution</Text>
-        <Text style={styles.detailsLink}>Details</Text>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("Settings");
+          }}
+        >
+          <Text style={styles.detailsLink}>Details</Text>
+        </TouchableOpacity>
       </View>
       <View style={styles.content}>
         <AirPollutionIcon aqi={airQuality.current.us_aqi} />

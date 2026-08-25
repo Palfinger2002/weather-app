@@ -1,4 +1,10 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  TouchableOpacity,
+} from "react-native";
 import type { WeatherResponse } from "../../types/weather";
 import { WeatherIcon } from "../WeatherIcon/WeatherIcon";
 import { useState } from "react";
@@ -10,7 +16,7 @@ interface ForecastProps {
   weather: WeatherResponse;
 }
 
-type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
+export type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 export const Forecast = ({ weather }: ForecastProps) => {
   const [activeTab, setActiveTab] = useState<
@@ -32,6 +38,7 @@ export const Forecast = ({ weather }: ForecastProps) => {
   }
 
   const dateString = date.toISOString().split("T")[0];
+
   function getForecastForHour(
     hour: string,
     isDay: number,
@@ -57,7 +64,7 @@ export const Forecast = ({ weather }: ForecastProps) => {
     <View style={styles.container}>
       <View style={styles.tabsRow}>
         <View style={{ flexDirection: "row", gap: 12 }}>
-          <TouchableOpacity onPress={() => setActiveTab("today")}>
+          <Pressable onPress={() => setActiveTab("today")}>
             <Text
               style={
                 activeTab === "today" ? styles.tabActive : styles.tabInactive
@@ -65,9 +72,9 @@ export const Forecast = ({ weather }: ForecastProps) => {
             >
               Today
             </Text>
-          </TouchableOpacity>
+          </Pressable>
 
-          <TouchableOpacity onPress={() => setActiveTab("tomorrow")}>
+          <Pressable onPress={() => setActiveTab("tomorrow")}>
             <Text
               style={
                 activeTab === "tomorrow" ? styles.tabActive : styles.tabInactive
@@ -75,9 +82,9 @@ export const Forecast = ({ weather }: ForecastProps) => {
             >
               Tomorrow
             </Text>
-          </TouchableOpacity>
+          </Pressable>
 
-          <TouchableOpacity onPress={() => setActiveTab("3-days")}>
+          <Pressable onPress={() => setActiveTab("3-days")}>
             <Text
               style={
                 activeTab === "3-days" ? styles.tabActive : styles.tabInactive
@@ -85,9 +92,9 @@ export const Forecast = ({ weather }: ForecastProps) => {
             >
               3-days
             </Text>
-          </TouchableOpacity>
+          </Pressable>
 
-          <TouchableOpacity onPress={() => setActiveTab("7-days")}>
+          <Pressable onPress={() => setActiveTab("7-days")}>
             <Text
               style={
                 activeTab === "7-days" ? styles.tabActive : styles.tabInactive
@@ -95,12 +102,16 @@ export const Forecast = ({ weather }: ForecastProps) => {
             >
               7-days
             </Text>
-          </TouchableOpacity>
+          </Pressable>
         </View>
         <View>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate("TodayDetails", { day: activeTab });
+              navigation.navigate("DayDetails", {
+                day: activeTab,
+                date: dateString,
+                weather,
+              });
             }}
           >
             <Text style={styles.seeAll}>See All</Text>
