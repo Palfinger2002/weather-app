@@ -51,6 +51,8 @@ export const Forecast = ({ weather }: ForecastProps) => {
     return {
       temp: weather.hourly.temperature_2m[index],
       code: weather.hourly.weather_code[index],
+      precipitation: weather.hourly.precipitation_probability[index],
+      windSpeed: weather.hourly.wind_speed_10m[index],
       isDay,
     };
   }

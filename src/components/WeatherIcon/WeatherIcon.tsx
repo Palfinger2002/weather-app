@@ -17,6 +17,7 @@ export const WeatherIcon = ({
       <Image
         source={weatherImages.clearDay}
         style={[styles.weatherIcon, size]}
+        resizeMode="contain"
       />
     );
   }
@@ -26,6 +27,7 @@ export const WeatherIcon = ({
       <Image
         source={weatherImages.clearNight}
         style={[styles.weatherIcon, size]}
+        resizeMode="contain"
       />
     );
   }
@@ -35,6 +37,7 @@ export const WeatherIcon = ({
       <Image
         source={weatherImages.partlyCloudyDay}
         style={[styles.weatherIcon, size]}
+        resizeMode="contain"
       />
     );
   }
@@ -44,6 +47,7 @@ export const WeatherIcon = ({
       <Image
         source={weatherImages.partlyCloudyNight}
         style={[styles.weatherIcon, size]}
+        resizeMode="contain"
       />
     );
   }
@@ -53,13 +57,18 @@ export const WeatherIcon = ({
       <Image
         source={weatherImages.cloudyDay}
         style={[styles.weatherIcon, size]}
+        resizeMode="contain"
       />
     );
   }
 
   if (weatherCode >= 45 && weatherCode <= 48 && isDay === 0) {
     return (
-      <Image source={weatherImages.cloudy} style={[styles.weatherIcon, size]} />
+      <Image
+        source={weatherImages.cloudy}
+        style={[styles.weatherIcon, size]}
+        resizeMode="contain"
+      />
     );
   }
 
@@ -69,7 +78,11 @@ export const WeatherIcon = ({
     isDay === 1
   ) {
     return (
-      <Image source={weatherImages.rain} style={[styles.weatherIcon, size]} />
+      <Image
+        source={weatherImages.rain}
+        style={[styles.weatherIcon, size]}
+        resizeMode="contain"
+      />
     );
   }
 
@@ -82,6 +95,7 @@ export const WeatherIcon = ({
       <Image
         source={weatherImages.rainNight}
         style={[styles.weatherIcon, size]}
+        resizeMode="contain"
       />
     );
   }
@@ -93,7 +107,11 @@ export const WeatherIcon = ({
     isDay === 1
   ) {
     return (
-      <Image source={weatherImages.cloudy} style={[styles.weatherIcon, size]} />
+      <Image
+        source={weatherImages.cloudy}
+        style={[styles.weatherIcon, size]}
+        resizeMode="contain"
+      />
     );
   }
 
@@ -103,7 +121,11 @@ export const WeatherIcon = ({
     isDay === 0
   ) {
     return (
-      <Image source={weatherImages.cloudy} style={[styles.weatherIcon, size]} />
+      <Image
+        source={weatherImages.cloudy}
+        style={[styles.weatherIcon, size]}
+        resizeMode="contain"
+      />
     );
   }
 
@@ -112,6 +134,7 @@ export const WeatherIcon = ({
       <Image
         source={weatherImages.thunderstorm}
         style={[styles.weatherIcon, size]}
+        resizeMode="contain"
       />
     );
   }
