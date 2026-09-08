@@ -29,3 +29,35 @@ export const getWeatherDescription = (code: number): string => {
 
   return "Unknown";
 };
+
+export function getConditionPhrase(
+  code: number,
+  precipitation: number,
+  windSpeed: number,
+): string {
+  if (precipitation >= 90) {
+    return `Chance of Heavy Rain ${Math.round(precipitation)}%`;
+  }
+
+  if (precipitation >= 50) {
+    return `Winds light and chance of rain ${Math.round(precipitation)}`;
+  }
+
+  if (windSpeed > 20) {
+    return "Turning cloudy and windy";
+  }
+
+  if (code === 0) {
+    return "Clear skies all day";
+  }
+
+  if (code >= 1 && code <= 3) {
+    return "Partly cloudy conditions";
+  }
+
+  if (code >= 45 && code <= 48) {
+    return "Foggy conditions expected";
+  }
+
+  return getWeatherDescription(code);
+}
