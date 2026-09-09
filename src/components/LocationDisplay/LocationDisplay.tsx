@@ -1,9 +1,12 @@
 import { StyleSheet, Text, View } from "react-native";
+import { useCityName } from "../../hooks/useLocationName";
 
-export const LocationDisplay = ({ weather }: { weather: any }) => {
+export const LocationDisplay = () => {
+  const { cityName } = useCityName();
+
   return (
     <View>
-      <Text style={styles.locationText}>South Jakarta, Indonesia ▾</Text>
+      <Text style={styles.locationText}>{cityName} ▾</Text>
     </View>
   );
 };

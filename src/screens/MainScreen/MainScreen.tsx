@@ -36,7 +36,7 @@ export const MainScreen = () => {
     <View style={styles.container}>
       <Header />
       <CurrentWeather weather={weather} />
-      <LocationDisplay weather={weather} />
+      <LocationDisplay />
       <WeatherMetrics weather={weather} />
       <Forecast weather={weather} />
       <AirPollution airQuality={airQuality} />
