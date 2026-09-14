@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, ScrollView } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useWeather } from "../../hooks/useWeather";
 import { useAirQuality } from "../../hooks/useAirQuality";
 import { Header } from "../../components/Header/Header";
@@ -7,6 +8,7 @@ import { WeatherMetrics } from "../../components/WeatherMetrics/WeatherMetrics";
 import { LocationDisplay } from "../../components/LocationDisplay/LocationDisplay";
 import { Forecast } from "../../components/Forecast/Forecast";
 import { AirPollution } from "../../components/AirPollution/AirPollution";
+import { MyCityCarousel } from "../../components/MyCityCarousel/MyCityCarousel";
 
 export const MainScreen = () => {
   const { weather, error, isLoading } = useWeather();
@@ -33,21 +35,22 @@ export const MainScreen = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Header />
       <CurrentWeather weather={weather} />
       <LocationDisplay />
       <WeatherMetrics weather={weather} />
       <Forecast weather={weather} />
       <AirPollution airQuality={airQuality} />
-    </View>
+      <MyCityCarousel />
+    </ScrollView>
   );
 };
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "flex-start",
+    // justifyContent: "flex-start",
     paddingTop: 45,
     gap: 24,
     paddingRight: 12,

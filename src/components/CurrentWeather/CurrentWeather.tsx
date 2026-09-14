@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     justifyContent: "space-between",
-    margin: 24,
+    marginHorizontal: 24,
   },
 
   bigTemp: {

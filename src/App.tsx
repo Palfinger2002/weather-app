@@ -5,6 +5,7 @@ import { Settings } from "./screens/Settings/Settings";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import type { RootStackParamList } from "./types/navigation";
 import { formatDayLabel } from "./utils/formatDayLabel";
+import { EditCities } from "./components/EditCities/EditCities";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -19,6 +20,7 @@ export default function App() {
           options={({ route }) => ({ title: formatDayLabel(route.params.day) })}
         ></Stack.Screen>
         <Stack.Screen name="Settings" component={Settings}></Stack.Screen>
+        <Stack.Screen name="EditCities" component={EditCities}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );

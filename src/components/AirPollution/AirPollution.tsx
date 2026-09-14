@@ -28,14 +28,14 @@ export const AirPollution = ({ airQuality }: AirPollutionProps) => {
         <AirPollutionIcon aqi={airQuality.current.us_aqi} />
 
         <View style={styles.textBlock}>
-          <View style={styles.valueRow}>
+          <View style={styles.column}>
             <Text style={styles.aqiValue}>{airQuality.current.us_aqi}</Text>
-            <Text style={styles.pm25Label}> | Micro Dust / PM2.5</Text>
+            <Text style={styles.aqiCategory}>{category}</Text>
           </View>
-          <Text style={styles.aqiCategory}>{category}</Text>
-        </View>
-        <View style={styles.pm25Block}>
-          <Text style={styles.pm25Value}>{airQuality.current.pm2_5}</Text>
+          <View style={styles.column}>
+            <Text style={styles.pm25Label}>Micro Dust / PM2.5</Text>
+            <Text style={styles.pm25Value}>{airQuality.current.pm2_5}</Text>
+          </View>
         </View>
       </View>
     </View>
@@ -47,21 +47,18 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
     flexDirection: "row",
     marginHorizontal: 24,
-    gap: 16,
   },
 
   sectionTitle: {
     fontWeight: 600,
     fontSize: 16,
     lineHeight: 26,
-    letterSpacing: 0,
   },
 
   detailsLink: {
     fontWeight: 600,
     fontSize: 16,
     lineHeight: 26,
-    letterSpacing: 0,
     color: "#617BE3",
   },
 
@@ -73,15 +70,12 @@ export const styles = StyleSheet.create({
 
   textBlock: {
     marginLeft: 16,
-  },
-
-  valueRow: {
     flexDirection: "row",
-    alignItems: "baseline",
+    gap: 20,
   },
 
-  aqiBlock: {
-    marginVertical: 24,
+  column: {
+    justifyContent: "flex-start",
   },
 
   aqiValue: {
@@ -89,29 +83,25 @@ export const styles = StyleSheet.create({
     fontWeight: 400,
     fontSize: 32,
     lineHeight: 44,
-    letterSpacing: 1,
-    marginRight: 30,
   },
 
   aqiCategory: {
     fontWeight: 600,
     fontSize: 14,
     lineHeight: 20,
-    letterSpacing: 0,
-  },
-
-  pm25Block: {
-    marginLeft: 0,
   },
 
   pm25Label: {
     fontSize: 12,
     lineHeight: 18,
+    marginTop: 14,
+    marginBottom: 10,
   },
 
   pm25Value: {
     fontSize: 16,
     fontWeight: 600,
     lineHeight: 22,
+    marginLeft: 30,
   },
 });
