@@ -7,5 +7,6 @@ export type RootStackParamList = {
     date: string;
     weather: WeatherResponse;
   };
-  Settings: undefined;
+  EditCities: undefined;
+  RegistrationScreen: undefined;
 };

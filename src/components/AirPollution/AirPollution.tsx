@@ -17,9 +17,9 @@ export const AirPollution = ({ airQuality }: AirPollutionProps) => {
       <View style={styles.header}>
         <Text style={styles.sectionTitle}>Air Pollution</Text>
         <TouchableOpacity
-          onPress={() => {
-            navigation.navigate("Settings");
-          }}
+        // onPress={() => {
+        //   navigation.navigate("RegistrationScreen");
+        // }}
         >
           <Text style={styles.detailsLink}>Details</Text>
         </TouchableOpacity>

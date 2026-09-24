@@ -9,16 +9,16 @@ export function useSavedCities() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const addCity = (city: City) => {
+  const addCity = async (city: City) => {
     const newCities = [...cities, city];
     setCities(newCities);
-    AsyncStorage.setItem(MY_CITY_ID, JSON.stringify(newCities));
+    await AsyncStorage.setItem(MY_CITY_ID, JSON.stringify(newCities));
   };
 
-  const removeCity = (id: number) => {
+  const removeCity = async (id: number) => {
     const deletedCity = cities.filter((city) => city.id !== id);
     setCities(deletedCity);
-    AsyncStorage.setItem(MY_CITY_ID, JSON.stringify(deletedCity));
+    await AsyncStorage.setItem(MY_CITY_ID, JSON.stringify(deletedCity));
   };
 
   useEffect(() => {

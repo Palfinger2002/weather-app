@@ -1,5 +1,4 @@
 import { StyleSheet, Text, ScrollView } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { useWeather } from "../../hooks/useWeather";
 import { useAirQuality } from "../../hooks/useAirQuality";
 import { Header } from "../../components/Header/Header";

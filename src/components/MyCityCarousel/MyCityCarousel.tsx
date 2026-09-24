@@ -214,6 +214,7 @@ export const styles = StyleSheet.create({
     justifyContent: "space-around",
     marginTop: 5,
     textAlign: "center",
+    fontWeight: 600,
   },
 
   listCities: {
