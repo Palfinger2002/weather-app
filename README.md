@@ -2,7 +2,7 @@
 
 A cross-platform mobile weather app built with React Native and Expo. Automatically detects the user's location, shows current conditions and air quality, and lets users save and switch between multiple cities.
 
-📱 **[Download APK](https://github.com/YOUR-USERNAME/YOUR-REPO/releases/download/v1.0.0/application-615961e3-56a6-40de-af3e-d9aa8d5ff4eb.apk)**
+📱 **[Download APK](https://github.com/Palfinger2002/weather-app/releases/download/v1.0.0/application-615961e3-56a6-40de-af3e-d9aa8d5ff4eb.apk)**
 
 ## Features
 
