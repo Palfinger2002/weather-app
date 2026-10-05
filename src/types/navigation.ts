@@ -1,4 +1,5 @@
 import { WeatherResponse } from "./weather";
+import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 export type RootStackParamList = {
   Main: undefined;
@@ -7,6 +8,7 @@ export type RootStackParamList = {
     date: string;
     weather: WeatherResponse;
   };
-  EditCities: undefined;
   RegistrationScreen: undefined;
 };
+
+export type NavigationProp = NativeStackNavigationProp<RootStackParamList>;

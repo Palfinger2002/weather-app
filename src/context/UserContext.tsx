@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, use } from "react";
+import { createContext, useState, useEffect, ReactNode } from "react";
 import { User, USER_PROFILE_KEY } from "../utils/user";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -14,7 +14,7 @@ export const UserContext = createContext<UserContextValue | null>(null);
 export function UserProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const createUser = async (userData: User): Promise<boolean> => {
     try {

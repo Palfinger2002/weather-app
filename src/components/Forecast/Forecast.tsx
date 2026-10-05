@@ -9,14 +9,11 @@ import type { WeatherResponse } from "../../types/weather";
 import { WeatherIcon } from "../WeatherIcon/WeatherIcon";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import type { RootStackParamList } from "../../types/navigation";
+import { NavigationProp } from "../../types/navigation";
 
 interface ForecastProps {
   weather: WeatherResponse;
 }
-
-export type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 export const Forecast = ({ weather }: ForecastProps) => {
   const [activeTab, setActiveTab] = useState<

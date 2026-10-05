@@ -10,12 +10,8 @@ import {
 } from "react-native";
 import { WeatherIcon } from "../WeatherIcon/WeatherIcon";
 import { useNavigation } from "@react-navigation/native";
-import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import type { RootStackParamList } from "../../types/navigation";
-import { useState, useEffect } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
-type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
+import { useState } from "react";
+import { NavigationProp } from "../../types/navigation";
 
 export const MyCityCarousel = () => {
   const { cities, error, isLoading } = useSavedCities();
@@ -28,10 +24,6 @@ export const MyCityCarousel = () => {
   const [isCityListOpen, setIsCityListOpen] = useState(false);
 
   const navigation = useNavigation<NavigationProp>();
-
-  useEffect(() => {
-    AsyncStorage.clear();
-  }, []);
 
   if (isLoading || weatherLoading) {
     return <Text>Loading...</Text>;

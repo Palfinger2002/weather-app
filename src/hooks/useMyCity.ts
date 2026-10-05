@@ -18,7 +18,6 @@ export function useMyCity() {
           AsyncStorage.setItem(MY_CITY_ID, JSON.stringify(savedCities[0].id));
         } else {
           setSelectedCityId(Number(savedData));
-          AsyncStorage.setItem(MY_CITY_ID, String(selectedCityId));
         }
       } catch (err) {
         if (err instanceof Error) {
